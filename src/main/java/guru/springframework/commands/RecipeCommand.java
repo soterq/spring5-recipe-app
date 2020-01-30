@@ -4,7 +4,9 @@ import guru.springframework.domain.Difficulty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.NotBlank;
+
 import org.hibernate.validator.constraints.URL;
 
 import javax.validation.constraints.Max;
@@ -19,7 +21,7 @@ import java.util.Set;
 public class RecipeCommand {
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Description can not be empty")
     @Size(min = 3, max = 255)
     private String description;
 
@@ -39,7 +41,7 @@ public class RecipeCommand {
     @URL
     private String url;
 
-    @NotBlank
+    @NotBlank(message = "Directions can not be empty")
     private String directions;
 
     private Set<IngredientCommand> ingredients = new HashSet<>();
